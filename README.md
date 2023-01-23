@@ -1,2 +1,2 @@
 # alx-backend-javascript
-Contains all of my backend tasks and projectsduring specialisation at Alx
+Contains all of my javascript tasks and projects during my backend specialisation at Alx
