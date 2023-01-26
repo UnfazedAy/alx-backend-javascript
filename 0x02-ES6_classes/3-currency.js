@@ -6,6 +6,22 @@ export default class Currency {
   }
 
   get code() {
-    
+    return this._code;
+  }
+
+  set code(val) {
+    this.code = val;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(val) {
+    this.code = val;
+  }
+
+  displayFullCurrency() {
+    return (`${this.name} ${this.code}`);
   }
 }
