@@ -14,12 +14,8 @@ interface Directors extends Teacher {
 interface printTeacherFunction {
     (firstName: string, lastName: string): string;
 }
-// ** This works also ** //
-// const printTeacher: printTeacherFunction = ((firstName, lastName) => {
-//   console.log(`${firstName[0]}. ${ lastName}`);
-// });
 
-function printTeacher(firstName, lastName): printTeacherFunction {
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
   console.log(`${firstName[0]}. ${ lastName}`);
 }
 
@@ -34,6 +30,8 @@ interface StudentClass {
 }
 
 class StudentClass implements StudentClass {
+  firstName: string;
+  lastName: string;
   constructor({firstName, lastName}: StudentClassContructor) {
     this.firstName = firstName;
     this.lastName = lastName;
