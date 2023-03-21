@@ -14,7 +14,7 @@ function countStudents(path) {
       if (!fields[field]) {
         fields[field] = {
           count: 0,
-          names: []
+          names: [],
         };
       }
       fields[field].count += 1;
