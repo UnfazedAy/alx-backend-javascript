@@ -11,10 +11,9 @@ const app = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
-  }
-
-  else if (req.url === '/students') {
-    countStudents(process.argv[2])
+  } else if (req.url === '/students') {
+    const filePath = argv[2];
+    countStudents(filePath)
       .then((data) => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
@@ -22,8 +21,18 @@ const app = http.createServer((req, res) => {
         res.end(data);
       })
       .catch((err) => {
-        
-      })
+        console.log(err);
+        res.statusCode = 500;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Internal Server Error');
+      });
+  } else {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Not Found\n');
+  }
 });
+
+app.listen(port, hostname);
 
 module.exports = app;
