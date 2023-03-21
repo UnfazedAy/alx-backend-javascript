@@ -1,7 +1,7 @@
 /* eslint-disable guard-for-in */
 const fs = require('fs');
 
-function countStudents (path) {
+function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     const dataArray = data.trim().split('\n').map((row) => row.split(','));
