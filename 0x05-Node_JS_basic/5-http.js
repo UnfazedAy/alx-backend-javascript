@@ -19,7 +19,7 @@ app.on('request', (req, res) => {
     res.setHeader('ContentType', 'text/plain');
     res.write('This is the list of our students\n');
   } else if (req.url === '/students') {
-    const filePath = process.argv[2];
+    const filePath = argv[2];
     countStudents(filePath)
   }
 });
