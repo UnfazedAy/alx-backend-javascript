@@ -16,8 +16,6 @@ function countStudents(path) {
 
       const dataArray = data.trim().split('\n').map((row) => row.split(','));
       const students = dataArray.slice(1);
-      console.log(`Number of students: ${students.length}`);
-
       const fields = {}; // stores the count and list
       students.forEach((student) => {
         const field = student[3]; // Gets the fields of the student
@@ -31,12 +29,12 @@ function countStudents(path) {
         fields[field].names.push(student[0]);
       });
 
+      const output = [`Number of students: ${students.length}`];
       // eslint-disable-next-line guard-for-in
       for (const field in fields) {
-        console.log(`Number of students in ${field}: ${fields[field].count}. List: ${fields[field].names.join(', ')}`);
+        output.push(`Number of students in ${field}: ${fields[field].count}. List: ${fields[field].names.join(', ')}`);
       }
-
-      resolve();
+      resolve(output.join('\n'));
     });
   });
 }
@@ -47,15 +45,15 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
-    res.setHeader('Content-Type', 'text/plain');
-    res.write('This is the list of our students\n');
-    countStudents(filePath).then(() => {
-      res.end();
-    }).catch((error) => {
-      res.statusCode = 500;
-      res.write(`${error}\n`);
-      res.end();
-    });
+    countStudents(filePath)
+      .then((output) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end(`This is the list of our students\n${output}`);
+      })
+      .catch(() => {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Cannot load the database');
+      });
   }
 });
 
