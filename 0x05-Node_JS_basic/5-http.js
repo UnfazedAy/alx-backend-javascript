@@ -12,16 +12,18 @@ const app = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   }
-});
 
-app.on('request', (req, res) => {
-  if (req.url === '/students') {
-    res.setHeader('ContentType', 'text/plain');
-    res.write('This is the list of our students\n');
-  } else if (req.url === '/students') {
-    const filePath = argv[2];
-    countStudents(filePath)
-  }
+  else if (req.url === '/students') {
+    countStudents(process.argv[2])
+      .then((data) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.write('This is the list of our students\n');
+        res.end(data);
+      })
+      .catch((err) => {
+        
+      })
 });
 
 module.exports = app;
