@@ -1,5 +1,5 @@
-const fs = require('fs');
 const http = require('http');
+const fs = require('fs');
 
 const { argv } = process;
 const port = 1245;
@@ -45,14 +45,14 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   }
   if (req.url === '/students') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('This is the list of our students\n');
     countStudents(filePath)
       .then((output) => {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end(`This is the list of our students\n${output}`);
+        res.end(output);
       })
       .catch(() => {
-        res.writeHead(404, { 'Content-Type': 'text/plain' });
-        res.end('Cannot load the database');
+        res.end('Cannot load the database\n');
       });
   }
 });

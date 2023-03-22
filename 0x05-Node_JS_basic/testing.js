@@ -8,7 +8,7 @@ const lists = [
   ['Joseph', 'Crisou', '34', 'SWE'],
   ['Paul', 'Schneider', '60', 'SWE'],
   ['Tommy', 'Schoul', '32', 'SWE'],
-  ['Katie', 'Shirou', '21', 'CS']
+  ['Katie', 'Shirou', '21', 'CS'],
 ];
 
 const fields = new Set();

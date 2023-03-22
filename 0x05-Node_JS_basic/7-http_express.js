@@ -45,14 +45,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.write('This is the list of our students\n');
   countStudents(filePath)
     .then((output) => {
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(`This is the list of our students\n${output}`);
+      res.end(output);
     })
     .catch(() => {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('Cannot load the database');
+      res.end('Cannot load the database\n');
     });
 });
 
