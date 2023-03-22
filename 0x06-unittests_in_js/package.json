@@ -18,6 +18,7 @@
   "homepage": "https://github.com/UnfazedAy/alx-backend-javascript#readme",
   "dependencies": {
     "chai": "^4.3.7",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "sinon": "^15.0.2"
   }
 }
