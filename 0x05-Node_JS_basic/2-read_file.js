@@ -5,7 +5,9 @@ function countStudents(path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
     const dataArray = data.trim().split('\n').map((row) => row.split(','));
+    console.log(dataArray);
     const students = dataArray.slice(1);
+    console.log(students);
     console.log(`Number of students: ${students.length}`);
 
     const fields = {}; // stores the count and list
