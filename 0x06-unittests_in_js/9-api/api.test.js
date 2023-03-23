@@ -10,6 +10,15 @@ describe('Index page', function() {
     });
   });
 
+  it('should return the correct message when / is accessed', (done) => {
+    request.get('http://localhost:7865', (err, res, body) => {
+      expect(body).to.equal('Welcome to the payment system')
+      done();
+    });
+  });
+});
+
+describe('Carts page', function() {
   it('should return a status code of 200 when /cart/id is accessed', (done) => {
     request.get('http://localhost:7865/cart/3', (err, res, body) => {
       expect(res).to.exist;
