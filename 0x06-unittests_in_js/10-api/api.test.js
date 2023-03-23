@@ -48,3 +48,39 @@ describe('Carts page', function() {
     });
   });
 });
+
+describe('Available payments page', function() {
+  it('should return the correct status code when /available_payments is accessed', (done) => {
+    request.get('http://127.0.0.1:7865/available_payments', (err, res, body) => {
+      expect(res).to.exist;
+      expect(res.statusCode).to.equal(200);
+      if (err) expect(res.statusCode).to.not.equal(200);
+      done()
+    });
+  });
+
+  it('should return the correct object output when /available_payments is accessed', (done) => {
+    const validPayments = {
+      payment_methods: {
+        credit_cards: true,
+        paypal: false
+      }
+    }
+    request.get('http://127.0.0.1:7865/available_payments', (err, res, body) => {
+      expect(JSON.parse(body)).to.deep.equal(validPayments);
+      done()
+    });
+  });
+});
+
+describe('Login page', function() {
+  it('should return the right status code and correct output when /login is accessed', (done) => {
+    request.post('http://localhost:7865/login', {json: {userName: 'Ayomide'}}, (err, res, body) => {
+      expect(res).to.exist;
+      expect(res.statusCode).to.equal(200)
+      if (err) expect(res.statusCode).to.not.equal(200);
+      expect(body).to.be.equal('Welcome Ayomide');
+      done()
+    });
+  });
+});
